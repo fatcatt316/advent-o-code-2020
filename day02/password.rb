@@ -2,11 +2,10 @@ module Password
   extend self
 
   def valid_count(filepath, valid_method)
-    count = 0
-    File.readlines(filepath).each do |line|
-      count += 1 if send(valid_method, line)
+    File.readlines(filepath).inject(0) do |sum, line|
+      sum += 1 if send(valid_method, line)
+      sum
     end
-    puts count
   end
 
   def valid?(rule_with_password)
@@ -31,8 +30,8 @@ module Password
 
     password = rule_with_password.split(":").last.strip
 
-    (password[idx1-1] == rule_letter && password[idx2-1] != rule_letter) ||
-    (password[idx1-1] != rule_letter && password[idx2-1] == rule_letter)
+    password[idx1-1] != password[idx2-1] &&
+    (password[idx1-1] == rule_letter || password[idx2-1] == rule_letter)
   end
 end
 
@@ -67,13 +66,13 @@ end
 
 
 puts "test_input.txt should equal 2"
-Password.valid_count('./test_input.txt', 'valid?')
+puts Password.valid_count('./test_input.txt', 'valid?')
 
 puts "Part 1"
-Password.valid_count('./input1.txt', 'valid?')
+puts Password.valid_count('./input1.txt', 'valid?')
 
 puts "test_input.txt should equal 1"
-Password.valid_count('./test_input.txt', 'toboggan_valid?')
+puts Password.valid_count('./test_input.txt', 'toboggan_valid?')
 
 puts "Part 2"
-Password.valid_count('./input1.txt', 'toboggan_valid?')
+puts Password.valid_count('./input1.txt', 'toboggan_valid?')
