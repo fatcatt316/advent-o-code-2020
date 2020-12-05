@@ -1,15 +1,5 @@
 "Passport Validator"
 
-"Expected fields
-    byr (Birth Year)
-    iyr (Issue Year)
-    eyr (Expiration Year)
-    hgt (Height)
-    hcl (Hair Color)
-    ecl (Eye Color)
-    pid (Passport ID)
-    cid (Country ID) <---- optional"
-
 Eval [
   "Read the input file line-by-line."
 
@@ -55,8 +45,7 @@ Eval [
 
     required_fields values = expected_values
       ifTrue: [
-        'Valid passport! Line:' displayNl.
-        (line) displayNl.
+        '⭐Valid passport⭐' displayNl.
 
         valid_passport_count := valid_passport_count + 1.
         reset_required_fields := True.
@@ -82,9 +71,7 @@ Eval [
   ].
   inputFile close.
 
-  'here be the required_fields' displayNl.
-  (required_fields) displayNl.
-
-  'Valid passport count: ' printNl.
+  '' displayNl.
+  'Valid passport count: ' displayNl.
   (valid_passport_count) displayNl.
 ]
