@@ -1,8 +1,6 @@
 "Passport Validator"
 
 Eval [
-  "Read the input file line-by-line."
-
   valid_passport_count := 0.
 
   "Expected values"
@@ -25,6 +23,7 @@ Eval [
   required_fields at: 'ecl' put: nil.
   required_fields at: 'pid' put: nil.
 
+  "Read the input file line-by-line."
   inputFile := FileStream open: 'input.txt' mode: FileStream read.
   inputFile linesDo: [:line |
     (line) displayNl.
