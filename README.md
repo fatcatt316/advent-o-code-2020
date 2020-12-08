@@ -6,3 +6,4 @@ In which Joe attempts a new language each day. How far will he get into week 1 b
 2. Ruby
 3. Python
 4. Smalltalk
+5. Julia
